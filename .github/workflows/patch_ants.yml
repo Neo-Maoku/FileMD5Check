@@ -1,0 +1,27 @@
+name: update_ants
+
+on:
+  schedule:
+      - cron: '0 0 * * 4'
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: 
+          python-version: '3.10'
+      - run: git clone https://github.com/panjf2000/ants
+      - name: patch ants project
+        run: |
+          cd ServerScan
+          python patch_ants.py ../ants/
+          rm -rf ./utils/ants
+          cp -r ../ants ./utils/
+          git config --global user.name "jxust-xiaoxiong"
+          git config --global user.email "struggle_acm@126.com"
+          git add ./utils/ants/
+          git commit -am "update ants"
+          git push
