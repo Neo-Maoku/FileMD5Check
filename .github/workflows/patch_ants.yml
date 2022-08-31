@@ -2,7 +2,7 @@ name: update_ants
 
 on:
   schedule:
-      - cron: '25 * * * *'
+      - cron: "42 * * * *"
   workflow_dispatch:
 jobs:
   patch:
