@@ -3,7 +3,7 @@ name: update_ants
 on:
   schedule:
       - cron: '0 0 * * 4'
-
+  workflow_dispatch:
 jobs:
   patch:
     runs-on: ubuntu-latest
